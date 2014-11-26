@@ -1,0 +1,17 @@
+{
+  "name": "tough-transports",
+  "version": "0.0.1",
+  "description": "WebSocket and XMLHttpRequest that behave (mostly) the same on node and browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lorenz Bauer",
+  "license": "MIT",
+  "browser": "./browser.js",
+  "dependencies": {
+    "tough-cookie": "^0.12.1",
+    "ws": "^0.5.0",
+    "xmlhttprequest": "git+https://github.com/lmb/node-XMLHttpRequest.git"
+  }
+}
