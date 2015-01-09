@@ -8,12 +8,12 @@ function Session() {
 }
 
 Session.prototype.WebSocket = function(urlStr) {
-	var cookies = this.jar.getCookieStringSync(url);
+	var cookies = this.jar.getCookieStringSync(urlStr);
 	var parsed = url.parse(urlStr);
 
 	var origin = parsed.protocol + '//' + parsed.host;
 
-	return new WebSocket(url, {headers: {
+	return new WebSocket(urlStr, {headers: {
 		"Cookie": cookies,
 		"Origin": origin,
 	}});
