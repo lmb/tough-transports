@@ -1,14 +1,22 @@
 var xhr = require("xmlhttprequest");
 var WebSocket = require("ws");
 var tough = require("tough-cookie");
+var url = require("url");
 
 function Session() {
 	this.jar = new tough.CookieJar();
 }
 
-Session.prototype.WebSocket = function(url) {
-	var header = this.jar.getCookieStringSync(url);
-	return new WebSocket(url, {headers: {"Cookie": header}});
+Session.prototype.WebSocket = function(urlStr) {
+	var cookies = this.jar.getCookieStringSync(url);
+	var parsed = url.parse(urlStr);
+
+	var origin = parsed.protocol + '//' + parsed.host;
+
+	return new WebSocket(url, {headers: {
+		"Cookie": cookies,
+		"Origin": origin,
+	}});
 };
 
 Session.prototype.XMLHttpRequest = function() {
